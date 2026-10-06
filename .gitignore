@@ -1,0 +1,13 @@
+# Virtual environment (never upload this)
+venv/
+.venv/
+
+# Python / Jupyter junk
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
