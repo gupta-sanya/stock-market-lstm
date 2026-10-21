@@ -49,7 +49,7 @@ The model was evaluated on the held-out final 5% of AAPL's history (186 trading 
 | LSTM | **57.5%** |
 | "Always up" baseline | 54.8% |
 
-The LSTM is marginally ahead of the naive baseline on every metric. The gap is small (about 1%) and comes from a single test period of 186 days, so it should be read as "on par with a very strong baseline" and not as a proven edge. The model also predicts very small daily moves (std 0.27% vs 1.66% actual), which is expected for next-day returns, where most of the movement is noise.
+The LSTM is marginally ahead of the naive baseline on every metric. The gap is small (about 1%) and comes from a single test period of 186 days, so it should be read as "on par with a very strong baseline" and not as a proven edge. The directional accuracy gap (57.5% vs 54.8%) is also within noise: with 186 test days the standard error is about 3.6 percentage points, so it is not statistically significant. The model also predicts very small daily moves (std 0.27% vs 1.66% actual), which is expected for next-day returns, where most of the movement is noise.
 
 ### How the model improved (v1 → v2)
 
@@ -65,7 +65,7 @@ The LSTM is marginally ahead of the naive baseline on every metric. The gap is s
 
 **What I learned:**
 - Predicting raw prices made the model fail on a rising stock: test prices went beyond the range seen in training, so it lagged and under-predicted by about 6 USD on average. Predicting returns removed this bias.
-- Early stopping mattered: the training loss kept falling while the validation loss started rising after about 30 epochs, so training stopped at epoch 37 and the best weights were restored.
+- Early stopping mattered: the training loss kept falling while the validation loss started rising after about 30 epochs, so training stopped at epoch 37 and the best weights (from epoch 29) were restored.
 - Next-day returns contain very little learnable signal: the validation loss improved by only about 5% from its starting point.
 - A "tomorrow = today" baseline is very hard to beat for daily prices, which is why the project reports baseline-relative metrics and not only a prediction plot.
 - Directional accuracy needs a fair reference: AAPL went up on about 55% of test days, so a model must beat that, not just 50%.
@@ -86,6 +86,7 @@ stock-market-lstm/
 ├── stock_market_lstm.ipynb   # full analysis + model, with outputs
 ├── lstm_model.keras          # trained model
 ├── requirements.txt          # pinned dependencies
+├── images/                   # screenshots used in this README
 └── README.md
 ```
 
