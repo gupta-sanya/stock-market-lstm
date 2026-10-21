@@ -101,10 +101,6 @@ pip install -r requirements.txt
 
 Open `stock_market_lstm.ipynb` in VS Code or Jupyter, select the `venv` kernel and run all cells. An internet connection is needed to download data. To model a different stock, change `TICKER` in section 6. Results vary slightly between runs and as new market data arrives.
 
-## Acknowledgements
-
-The exploratory analysis structure is adapted from a public Kaggle stock-analysis notebook. The return-based LSTM, leakage fixes, extra features, baselines and evaluation were added on top.
-
 ## Disclaimer
 
 Built for learning and portfolio purposes. It is not financial advice or a trading signal.
